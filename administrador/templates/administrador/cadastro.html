@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Usuário</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
+</head>
+
+<body>
+
+  <div class="topo">
+    <h1>Cadastrar Novo Usuário</h1>
+    <a href="{% url 'lista_usuarios' %}">Voltar</a>
+  </div>
+
+  <div class="container">
+    <form action="{% url 'cadastro' %}" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" required>
+      </div>
+
+      <div class="form-group">
+        <label for="login">Login:</label>
+        <input type="text" name="login" id="login" required>
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" required>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_usuario">Tipo de Usuário:</label>
+        <select name="tipo_usuario" id="tipo_usuario" required>
+          <option value="administrador">Administrador</option>
+          <option value="corretor">Corretor</option>
+        </select>
+      </div>
+
+      <div id="cpf-group" style="display: none;  margin-bottom: 15px;">
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" maxlength="14" placeholder="___.___.___-__">
+      </div>
+
+      <button type="submit">Cadastrar</button>
+
+      {% if erro %}
+      <p class="error">{{ erro }}</p>
+      {% endif %}
+    </form>
+  </div>
+
+</body>
+<script>
+
+  const tipoUsuarioSelect = document.getElementById("tipo_usuario");
+  const cpfgroup = document.getElementById("cpf-group");
+  const cpfInput = document.getElementById('cpf');
+
+
+  tipoUsuarioSelect.addEventListener("change", function () {
+    if (this.value === "corretor") {
+      cpfgroup.style.display = "block";
+    } else {
+      cpfgroup.style.display = "none";
+    }
+  });
+
+  cpfInput.addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+    e.target.value = value;
+  });
+</script>
+
+</html>

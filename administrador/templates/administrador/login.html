@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <title>Login - Gamificação SalesRun</title>
+</head>
+
+<body>
+  <header class="cabecalho">
+    <h1>Gamificação SalesRun</h1>
+    <img src="{% static 'img/salesrun_logo.jpeg' %}" alt="logo" class="logo">
+  </header>
+
+  <main class="container_login">
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+
+      <div class="login_senha">
+        <label for="login">Login:</label>
+        <input type="text" name="login" id="login" placeholder="Digite seu login" required>
+
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+      </div>
+
+      <button type="submit" class="botao">ENTRAR</button>
+
+      {% if erro %}
+      <p class="erro">{{ erro }}</p>
+      {% endif %}
+    </form>
+  </main>
+
+</body>
+
+</html>

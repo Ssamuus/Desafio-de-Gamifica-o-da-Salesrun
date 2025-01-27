@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Administrador</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/home_admin.css' %}">
+
+</head>
+
+<body>
+  <div class="topo">
+    <h1>Bem-vindo, {{ request.user.nome }}.</h1>
+    <a href="{% url 'logout' %}">Sair</a>
+  </div>
+
+  <div class="container">
+
+    <a class="btn1" href="{% url 'lista_desafios' %}">Desafios</a>
+    <a class="btn2" href="{% url 'lista_usuarios' %}">Usuários</a>
+
+  </div>
+
+</body>
+
+</html>

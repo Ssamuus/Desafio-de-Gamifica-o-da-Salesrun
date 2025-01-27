@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/convites.css' %}">
+  <title>Convites</title>
+</head>
+
+<body>
+
+  <div class="topo">
+    <h1>Convites</h1>
+    <a href="{% url 'desafios_corretor' %}">Voltar</a>
+  </div>
+
+  <div class="container">
+
+    {% if convites %}
+    <div class="convites-list">
+      {% for convite in convites %}
+      <div class="convite">
+        <h3>{{ convite.desafio.nome }}</h3>
+        <p><strong>Descrição:</strong> {{ convite.desafio.descricao }}</p>
+        <p><strong>Regras:</strong> {{ convite.desafio.regras }}</p>
+        {% if desafio.imagem %}
+        <div id="info-{{ desafio.id }}" class="imagem">
+          <img src="{{ desafio.imagem.url }}" alt="Identidade Visual">
+        </div>
+        {% else %}
+        <p><em>Sem imagem disponível.</em></p>
+        {% endif %}
+
+        <form method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="convite_id" value="{{ convite.id }}">
+          <button type="submit" name="resposta" value="aceitar" class="btn-aceitar">Aceitar</button>
+          <button type="submit" name="resposta" value="recusar" class="btn-recusar">Recusar</button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-invites">Você não tem convites pendentes.</p>
+    {% endif %}
+  </div>
+
+</body>
+
+</html>

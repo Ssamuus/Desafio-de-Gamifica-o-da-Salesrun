@@ -1,0 +1,104 @@
+body {
+  display: grid;
+  font-family: Arial;
+  gap: 20px;
+  margin: 0px;
+  background-color: #f4f4f4;
+}
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.topo h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+}
+
+.topo a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.convites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.convite {
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.convite h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.convite p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.btn-aceitar,
+.btn-recusar {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.btn-aceitar {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-recusar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-aceitar:hover {
+  background-color: #218838;
+}
+
+.btn-recusar:hover {
+  background-color: #c82333;
+}
+
+.no-invites {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+}
+
+.imagem img {
+  display: inline-block;
+  max-width: 200px;
+  max-height: 250px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

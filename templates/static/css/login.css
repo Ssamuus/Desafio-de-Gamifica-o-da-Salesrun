@@ -1,0 +1,96 @@
+body {
+  display: grid;
+  justify-items: center;
+  font-family: Arial;
+  gap: 40px;
+  margin: 0px;
+  margin-top: 60px;
+}
+
+.cabecalho {
+  margin: 10px;
+  font-size: 15px;
+  display: flex;
+  height: 50px;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-width: 90px;
+  display: inline-block;
+}
+
+.login_senha {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: center;
+}
+
+.login_senha input {
+  grid-column: 2;
+}
+
+.login_senha label {
+  grid-column: 1;
+}
+
+.container_login {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+}
+
+.container_login label {
+  margin: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.container_login input {
+  margin: 5px;
+
+  height: 35px;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.container_login input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.container_login button {
+  margin: 5px;
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.container_login button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.erro {
+  color: #dc3545;
+  text-align: center;
+}

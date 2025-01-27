@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Desafio</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/cadastro_desafio.css' %}">
+</head>
+
+<body>
+
+
+  <div class="topo">
+    <h1>Editar Desafio: {{ desafio.nome }}</h1>
+    <a href="{% url 'lista_desafios' %}">Voltar</a>
+  </div>
+
+  <div class="container">
+    <form action="{% url 'editar_desafio' desafio.id %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="nome">Nome do Desafio:</label>
+        <input type="text" name="nome" id="nome" value="{{ desafio.nome }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="imagem">Imagem:</label>
+        <input type="file" name="imagem" id="imagem">
+        {% if desafio.imagem %}
+        <img src="{{ desafio.imagem.url }}" alt="Imagem do desafio" width="100">
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <textarea name="descricao" id="descricao" required>{{ desafio.descricao }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="regras">Regras:</label>
+        <textarea name="regras" id="regras" required>{{ desafio.regras }}</textarea>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="corretores">Corretores Participantes:</label>
+        <select name="corretores" id="corretores" multiple>
+          {% for corretor in corretores %}
+          <option value="{{ corretor.id }}" {% if corretor in desafio.corretores.all %}selected{% endif %}>
+            {{ corretor.nome }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </div>
+
+</body>
+
+</html>

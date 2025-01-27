@@ -1,0 +1,89 @@
+body {
+  display: grid;
+  font-family: Arial;
+  gap: 40px;
+  margin: 0px;
+}
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.topo h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+}
+
+.topo a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.topo a:hover {
+  text-decoration: underline;
+}
+
+.btn1 {
+  display: inline-block;
+  padding: 30px 60px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn1:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn1:active {
+  background-color: #004085;
+}
+
+.btn2 {
+  display: inline-block;
+  padding: 30px 60px;
+  background-color: #5900ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn2:hover {
+  background-color: #3f00b3;
+  transform: scale(1.05);
+}
+
+.btn2:active {
+  background-color: #180085;
+}
+
+.container {
+  gap: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  justify-self: center;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+}

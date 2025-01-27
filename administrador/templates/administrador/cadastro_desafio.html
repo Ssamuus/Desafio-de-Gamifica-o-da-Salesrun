@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Desafio</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/cadastro_desafio.css' %}">
+</head>
+
+<body>
+
+  <div class="topo">
+    <h1>Cadastrar Novo Desafio</h1>
+    <a href="{% url 'lista_desafios' %}">Voltar</a>
+  </div>
+
+  <div class="container">
+    <form action="{% url 'cadastro_desafio' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="nome">Nome do Desafio:</label>
+        <input type="text" name="nome" id="nome" required>
+      </div>
+
+      <div class="form-group">
+        <label for="imagem">Imagem:</label>
+        <input type="file" name="imagem" id="imagem" required>
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <textarea name="descricao" id="descricao" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="regras">Regras:</label>
+        <textarea name="regras" id="regras" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="corretores">Selecione Corretores:</label>
+        <select name="corretores" multiple>
+          {% for corretor in corretores %}
+          <option value="{{ corretor.cpf }}">{{ corretor.nome }} - {{ corretor.cpf }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit">Cadastrar</button>
+
+      {% if erro %}
+      <p class="error">{{ erro }}</p>
+      {% endif %}
+    </form>
+  </div>
+
+</body>
+
+</html>

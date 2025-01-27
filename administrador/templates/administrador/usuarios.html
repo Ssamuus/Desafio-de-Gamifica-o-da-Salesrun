@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Usuários</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="topo">
+    <h1>Gerenciar Usuários</h1>
+    <a href="{% url 'homeadmin' %}">Voltar</a>
+  </div>
+  <a href="{% url 'cadastro' %}" class="cdt">Cadastrar Novo Usuário</a>
+
+
+  <div class="tabela">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.tipo_usuario }}</td>
+
+          <td>
+            <button class="btn" onclick="toggleInfo('{{ usuario.id }}')">Ver Informações</button>
+            <a href="{% url 'editar_usuario' usuario.id %}" class="btn">Editar</a>
+            <form method="POST" action="{% url 'apagar_usuario' usuario.id %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit">Apagar</button>
+            </form>
+          </td>
+        </tr>
+  </div>
+  <tr id="info-{{ usuario.id }}" class="hidden">
+    <td colspan="3" class="info-detalhes">
+      <div class="descricao">
+        <h2>Login:</h2>
+        <p>{{ usuario.login }}</p>
+        {% if usuario.tipo_usuario == "corretor" %}
+        <h2>CPF:</h2>
+        <p>{{ usuario.cpf }}</p>
+        {% endif %}
+      </div>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+
+  <script>
+    function toggleInfo(rowId) {
+      const infoRow = document.getElementById(`info-${rowId}`);
+      if (infoRow.classList.contains("hidden")) {
+        infoRow.classList.remove("hidden");
+      } else {
+        infoRow.classList.add("hidden");
+      }
+    }
+
+  </script>
+</body>
+
+</html>
